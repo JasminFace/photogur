@@ -16,7 +16,7 @@ def pictures(request):
 def picture_show(request, id):
     picture = Picture.objects.get(pk=id)
     context = {
-        'title': Picture.title,
+        'title': picture.title,
         'picture': picture
         }
     response = render(request, 'picture.html', context)
