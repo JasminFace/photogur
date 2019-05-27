@@ -10,5 +10,16 @@
     <h1>{{ picture.title }}</h1>
     <h2>{{ picture.artist }}</h2>
     <img src="{{ picture.url }}" alt="{{ picture.title }}"/>
+    {% for comment in picture.comments.all %}
+        <ul>
+            <li>
+                <p>{{ comment.name }} commented:</p>
+                <p>{{ comment.message|linebreaks }}</p>
+                <p>{{ comment.created_at }}</p>
+            </li>
+        </ul>
+    {% empty %}
+        <p>No comments here yet :(</p>
+    {% endfor %}
 </body>
 </html>
