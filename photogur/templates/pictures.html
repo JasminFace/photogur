@@ -3,7 +3,7 @@
     {% for picture in collection %}
     <ul>
         <li>
-            <p>{{ picture.title }} by {{ picture.artist }}</p>
+            <h2>{{ picture.title }} by {{ picture.artist }}</h2>
             <a href="{% url 'picture_details' picture.id %}">
                 <img src="{{ picture.url }}" alt="{{ picture.title }}">
             </a>
