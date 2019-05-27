@@ -11,7 +11,9 @@
     <ul>
         <li>
             <p>{{ picture.title }} by {{ picture.artist }}</p>
-            <img src="{{ picture.url }}" alt="{{ picture.title }}">
+            <a href="{% url 'picture_details' picture.id %}">
+                <img src="{{ picture.url }}" alt="{{ picture.title }}">
+            </a>
             <p>Comments: {{ picture.comments.count }}</p>
         </li>
     </ul>
