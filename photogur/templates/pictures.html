@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
-    {% for picture in collection %}
     <ul>
-        <li>
-            <h2>{{ picture.title }} by {{ picture.artist }}</h2>
-            <a href="{% url 'picture_details' picture.id %}">
-                <img src="{{ picture.url }}" alt="{{ picture.title }}">
-            </a>
-            <p>Comments: {{ picture.comments.count }}</p>
-        </li>
+        {% for picture in collection %}
+            <li>
+                <a href="{% url 'picture_details' picture.id %}">
+                    <img src="{{ picture.url }}" alt="{{ picture.title }}">
+                </a>
+                <h2>{{ picture.title }} by {{ picture.artist }}</h2>
+                <p>Comments: {{ picture.comments.count }}</p>
+            </li>
+        {% endfor %}
     </ul>
-    {% endfor %}
 {% endblock %}
