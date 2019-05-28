@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
-    <ul>
+    <ul class="collection">
         {% for picture in collection %}
             <li>
                 <a href="{% url 'picture_details' picture.id %}">
                     <img src="{{ picture.url }}" alt="{{ picture.title }}">
                 </a>
                 <h2>{{ picture.title }} by {{ picture.artist }}</h2>
-                <p>Comments: {{ picture.comments.count }}</p>
+                <p class="comment_info">Comments: {{ picture.comments.count }}</p>
             </li>
         {% endfor %}
     </ul>

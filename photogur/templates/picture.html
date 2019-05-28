@@ -1,17 +1,18 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h2>{{ picture.title }}</h2>
-    <h3>{{ picture.artist }}</h3>
-    <img src="{{ picture.url }}" alt="{{ picture.title }}"/>
-    {% for comment in picture.comments.all %}
-        <ul>
-            <li>
-                <p>{{ comment.name }} commented:</p>
-                <p>{{ comment.message|linebreaks }}</p>
-                <p>{{ comment.created_at }}</p>
-            </li>
-        </ul>
-    {% empty %}
-        <p>No comments here yet :(</p>
-    {% endfor %}
+    <main class="details">
+        <h2 class="details_title">{{ picture.title }}</h2>
+        <h3>{{ picture.artist }}</h3>
+        <img src="{{ picture.url }}" alt="{{ picture.title }}"/>
+        {% for comment in picture.comments.all %}
+            <ul class="comments">
+                <li>
+                    <p class="comment">{{ comment.message|linebreaks }}</p>
+                    <p class="comment_info">{{ comment.name }} - {{ comment.created_at }}</p>
+                </li>
+            </ul>
+        {% empty %}
+            <p>No comments here yet :(</p>
+        {% endfor %}
+    </main>
 {% endblock %}
