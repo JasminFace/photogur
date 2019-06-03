@@ -4,6 +4,32 @@
         <h2 class="details_title">{{ picture.title }}</h2>
         <h3>{{ picture.artist }}</h3>
         <img src="{{ picture.url }}" alt="{{ picture.title }}"/>
+
+        <form class = "add_comment" action="{% url 'create_comment' %}" method="post">
+            {% csrf_token %}
+
+            <input type="hidden" name="picture" value="{{ picture.pk }}">
+
+            <div class="field">
+                <label for="name">
+                    <span>Name:</span>
+                    <input id="name" type="text" name="name">
+                </label>
+            </div>
+
+            <div class="field">
+                <label for="comment">Comment: </label>
+                <textarea name="comment" id="comment" cols="42" rows="12" style="resize:none"></textarea>
+            </div>
+            
+            <input type="hidden" name="date" value="{{ comment.created_at }}">
+
+            <div class="submit_comment">
+                <label for="submit">Submit</label>
+                <input id="submit" type="submit" value="Submit"/>
+            </div> 
+        </form>
+
         {% for comment in picture.comments.all %}
             <ul class="comments">
                 <li>

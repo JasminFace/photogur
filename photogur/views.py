@@ -1,5 +1,6 @@
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.views.decorators.http import require_http_methods
 from photogur.models import Picture, Comment
 
 def root_path(request):
@@ -31,3 +32,12 @@ def picture_search(request):
     }
     response = render(request, 'search.html', context)
     return HttpResponse(response)
+
+@require_http_methods(['POST'])
+def create_comment(request):
+    picture_id = request.POST['picture']
+    picture = Picture.objects.get(id=picture_id)
+    name = request.POST['name']
+    comment = request.POST['comment']
+    Comment.objects.create(name=name, message=comment, picture=picture)
+    return redirect('picture_details', id=picture.id)
